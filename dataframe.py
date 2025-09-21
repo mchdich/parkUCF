@@ -5,10 +5,14 @@ import seaborn as sns
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
+import os
 
+DATA_DIR = "data"  # <-- new
+os.makedirs(DATA_DIR, exist_ok=True)  # <-- new
+filename = os.path.join(DATA_DIR, f"parking_data_20250919.jsonl")
 
 data = []
-with open("parking_data_AH.jsonl") as f:
+with open(filename) as f:
     for line in f:
         data.append(json.loads(line))
 
