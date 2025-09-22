@@ -29,7 +29,6 @@ def fetch_parking_data():
             if counts:#if it worked
                 location_name = counts.get("location_name", "")
                 if location_name.startswith("Garage ") and location_name[7] in 'ABCDH':
-                    api_location_id = counts.get("api_location_id")#nothing as fallback
                     available = int(counts.get("available"))
                     occupied = int(counts.get("occupied"))
                     total = int(counts.get("total"))
@@ -37,12 +36,11 @@ def fetch_parking_data():
 
                     try:#parse API refresh timestamp to ISO for pandas parsing
                         #converts timestamp datetime format to python datetime object, then to ISO
-                        iso_timestamp = datetime.strptime(counts.get("timestamp"), "%m/%d/%Y %H:%M:%S").isoformat()
+                        iso_timestamp = datetime.strptime(counts.get("timestamp"), "%m/%d/%Y %H:%M:%S.%f").isoformat()
                     except ValueError:#else just get the timestamp as it is
                         iso_timestamp = counts.get("timestamp")
                     
                     garage_data = { #dict, key value pairs
-                        "location_id": api_location_id,
                         "name": location_name,
                         "available": available,
                         "occupied": occupied,
@@ -56,22 +54,30 @@ def fetch_parking_data():
         logging.error(f"Fetch error: {e}")
         return None
 
-# Function to save data as JSONL (each line = one JSON object)
 def save_to_jsonl(data):
     if not data:
         return
-    # Build daily filename inside the 'data' folder
-    date_str = datetime.now().strftime("%Y%m%d")  # e.g., 20250918
-    filename = os.path.join(DATA_DIR, f"parking_data_{date_str}.jsonl")
 
+    filename = os.path.join(DATA_DIR, f"parking_data.json")
+
+    # Load existing data if file exists
+    if os.path.exists(filename):
+        try:
+            with open(filename, 'r') as f:
+                cumulative_data = json.load(f)
+        except json.JSONDecodeError:
+            cumulative_data = []
+    else:
+        cumulative_data = []
+
+    # Append new data
+    cumulative_data.extend(data)
+
+    # Write back the full cumulative data
+    with open(filename, 'w') as f:
+        json.dump(cumulative_data, f, indent=2)
+    
     fetch_time = datetime.now()
-    
-    with open(filename, 'a') as jsonl_file:
-        for entry in data:
-            # Write each garage as a separate JSON line
-            json.dump(entry, jsonl_file)
-            jsonl_file.write('\n')
-    
     logging.info(f"Data appended to {filename} at {fetch_time} ({len(data)} garages)")
 
 # Main loop: Fetch every 120 seconds

@@ -1,0 +1,130 @@
+[
+  {
+    "name": "Garage A",
+    "available": 1647,
+    "occupied": 0,
+    "total": 1647,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:45:17.937000"
+  },
+  {
+    "name": "Garage B",
+    "available": 1289,
+    "occupied": 0,
+    "total": 1289,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:45:17.937000"
+  },
+  {
+    "name": "Garage C",
+    "available": 1852,
+    "occupied": 0,
+    "total": 1852,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:45:17.937000"
+  },
+  {
+    "name": "Garage H",
+    "available": 1340,
+    "occupied": 0,
+    "total": 1340,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:45:17.937000"
+  },
+  {
+    "name": "Garage A",
+    "available": 1647,
+    "occupied": 0,
+    "total": 1647,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:47:17.570000"
+  },
+  {
+    "name": "Garage B",
+    "available": 1289,
+    "occupied": 0,
+    "total": 1289,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:47:17.570000"
+  },
+  {
+    "name": "Garage C",
+    "available": 1852,
+    "occupied": 0,
+    "total": 1852,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:47:17.570000"
+  },
+  {
+    "name": "Garage H",
+    "available": 1340,
+    "occupied": 0,
+    "total": 1340,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:47:17.570000"
+  },
+  {
+    "name": "Garage A",
+    "available": 1647,
+    "occupied": 0,
+    "total": 1647,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:49:16.635000"
+  },
+  {
+    "name": "Garage B",
+    "available": 1289,
+    "occupied": 0,
+    "total": 1289,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:49:16.635000"
+  },
+  {
+    "name": "Garage C",
+    "available": 1852,
+    "occupied": 0,
+    "total": 1852,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:49:16.635000"
+  },
+  {
+    "name": "Garage H",
+    "available": 1340,
+    "occupied": 0,
+    "total": 1340,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:49:16.635000"
+  },
+  {
+    "name": "Garage A",
+    "available": 1647,
+    "occupied": 0,
+    "total": 1647,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:51:16.562000"
+  },
+  {
+    "name": "Garage B",
+    "available": 1289,
+    "occupied": 0,
+    "total": 1289,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:51:16.562000"
+  },
+  {
+    "name": "Garage C",
+    "available": 1852,
+    "occupied": 0,
+    "total": 1852,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:51:16.562000"
+  },
+  {
+    "name": "Garage H",
+    "available": 1340,
+    "occupied": 0,
+    "total": 1340,
+    "occupancy_rate": 0.0,
+    "timestamp": "2025-09-22T01:51:16.562000"
+  }
+]
