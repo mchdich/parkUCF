@@ -33,12 +33,7 @@ def fetch_parking_data():
                     occupied = int(counts.get("occupied"))
                     total = int(counts.get("total"))
                     occupancy_rate = round(occupied / total, 3)#3 decimal places
-
-                    try:#parse API refresh timestamp to ISO for pandas parsing
-                        #converts timestamp datetime format to python datetime object, then to ISO
-                        iso_timestamp = datetime.strptime(counts.get("timestamp"), "%m/%d/%Y %H:%M:%S.%f").isoformat()
-                    except ValueError:#else just get the timestamp as it is
-                        iso_timestamp = counts.get("timestamp")
+                    timestamp = counts.get("timestamp")
                     
                     garage_data = { #dict, key value pairs
                         "name": location_name,
@@ -46,7 +41,7 @@ def fetch_parking_data():
                         "occupied": occupied,
                         "total": total,
                         "occupancy_rate": occupancy_rate,
-                        "timestamp": iso_timestamp,
+                        "timestamp": timestamp,
                     }
                     extracted_data.append(garage_data)
         return extracted_data
