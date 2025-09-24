@@ -24,9 +24,16 @@ df['day_of_week'] = df['timestamp'].dt.dayofweek
 df['minute'] = df['timestamp'].dt.minute
 
 # Plot occupancy rate over time by garage
-sns.lineplot(data=df, x='hour', y='occupancy_rate', hue='name')
-plt.title("Occupancy Rate by Hour")
+# Plot occupancy rate over full timeline by garage
+plt.figure(figsize=(12, 6))
+sns.lineplot(data=df.sort_values("timestamp"), x='timestamp', y='occupancy_rate', hue='name')
+plt.title("Occupancy Rate Over Time (All Days)")
+plt.xlabel("Time")
+plt.ylabel("Occupancy Rate")
+plt.xticks(rotation=45)
+plt.tight_layout()
 plt.show()
+
 
 # Average occupancy grouped by garage, day, and hour
 avg_occupancy = df.groupby(['name', 'day_of_week', 'hour'])['occupancy_rate'].mean().reset_index()

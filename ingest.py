@@ -33,14 +33,18 @@ def fetch_parking_data():
                     occupied = int(counts.get("occupied"))
                     total = int(counts.get("total"))
                     occupancy_rate = round(occupied / total, 3)#3 decimal places
+                    event_reserved = counts.get("event_reserved")
+                    event_name = counts.get("event_name")
                     timestamp = counts.get("timestamp")
-                    
+                        
                     garage_data = { #dict, key value pairs
                         "name": location_name,
                         "available": available,
                         "occupied": occupied,
                         "total": total,
                         "occupancy_rate": occupancy_rate,
+                        "event_reserved": event_reserved,
+                        "event_name": event_name,
                         "timestamp": timestamp,
                     }
                     extracted_data.append(garage_data)
@@ -49,7 +53,7 @@ def fetch_parking_data():
         logging.error(f"Fetch error: {e}")
         return None
 
-def save_to_jsonl(data):
+def save_to_json(data):
     if not data:
         return
 
@@ -85,7 +89,7 @@ while True:
         for garage in data:
             print(f"{garage['name']:<12} {garage['available']:<8} {garage['occupied']:<8} {garage['total']:<6} {garage['occupancy_rate']:<8}")
         print()
-        save_to_jsonl(data)
+        save_to_json(data)
     else:
         print("No data retrieved")
     
