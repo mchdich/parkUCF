@@ -1,0 +1,3 @@
+- identify alternative, less busy garages
+- predict occupancy across all garages for the day, identifying peaks
+- identify peak and drop trends for students to facilitate their parking planning
