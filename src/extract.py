@@ -29,7 +29,7 @@ def extract():
 		        if garage['location']['counts']['location_name'][7] in 'ABCDH'
             ]	
 			return filtered
-	except requests.exceptions.RequestsException as e:
+	except requests.exceptions.RequestException as e:
 		logging.error(f"Fetch error: {e}")
 
 def save(counts):
