@@ -26,24 +26,29 @@ def extract():
                     "timestamp": garage['location']['counts']['timestamp'],
                 }
 				for garage in data
-		        if garage['location']['counts']['location_name'][7] in 'ABCDH'
+		        if garage['location']['counts']['location_name'][7] in 'ABCDHI'
             ]	
 			return filtered
 	except requests.exceptions.RequestException as e:
 		logging.error(f"Fetch error: {e}")
 
 def save(counts):
-	if counts:
-		filename = os.path.join("data", "raw", "parking_data.json")
-		try:
-			with open(filename, 'r') as f:
-				cumulative_data = json.load(f)
-		except json.JSONDecodeError:
-			cumulative_data = []
-		cumulative_data.extend(counts)
+	filename = os.path.join("data", "raw", "parking_data.json")
+	try:
+		with open(filename, 'r') as f:
+			cumulative_data = json.load(f)
+	except Exception as e:
+		logging.error(f"JSON load failed - NOT overwriting. Error: {e}")
+		return
+	
+	cumulative_data.extend(counts)
+
+	try:
 		with open(filename, 'w') as f:
 			json.dump(cumulative_data, f, indent=2)
 		logging.info(f"Successfully saved data for {len(counts)} garages")
+	except Exception as e:
+		logging.error(f"Write error: {e}")
 		
 while True:
 	counts = extract()
