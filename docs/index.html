@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./output.css" rel="stylesheet">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+        />
+        <title>parkUCF</title>
+    </head>
+    <body class="dark:bg-gray-950 text-white inter-text flex-col">
+        <nav class="mt-3 mx-auto max-w-[200px] rounded-full border p-3 px-8 mb-8" style="border-color: gray;">
+            <ul class="flex gap-5">
+                <li class="font-bold"><a href="index.html">parkUCF</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+        <main>
+            <article>
+                <p class="text-center">Say goodbye to parking stress.</p>
+                <div class="swiper rounded-2xl" style="background-color: gray;">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">Slide 1</div>
+                        <div class="swiper-slide">Slide 2</div>
+                        <div class="swiper-slide">Slide 3</div>
+                        ...
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+                <script>
+                    const swiper = new Swiper('.swiper', {
+                    direction: 'horizontal',
+                    loop: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                    }
+                    });
+                </script>
+            </article>
+        </main>
+        <footer class="text-center text-gray-400">
+            Copyright © 2025 Mehdi Chraibi. All rights reserved.
+        </footer>
+    </body>
+</html>
