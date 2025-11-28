@@ -1,3 +1,1 @@
-- identify alternative, less busy garages
-- predict occupancy across all garages for the day, identifying peaks
-- identify peak and drop trends for students to facilitate their parking planning
+An application which predicts the occupancy rate of each garage for the day, notifies users of upcoming peaks and dips, and displays useful metrics and insights.
