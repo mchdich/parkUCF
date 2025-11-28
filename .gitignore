@@ -1,1 +1,4 @@
-"parking_scraper.log" 
+"extract.log" 
+data/
+venv/
+.env

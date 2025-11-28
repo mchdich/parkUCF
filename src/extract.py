@@ -3,7 +3,16 @@ import requests
 import os
 import time
 import logging
+from supabase import create_client, Client
+from dotenv import load_dotenv
 
+# Supabase config
+load_dotenv()
+url: str = os.environ.get("SUPABASE_URL")
+key: str = os.environ.get("SUPABASE_KEY")
+supabase: Client = create_client(url, key)
+
+# Logging config
 logging.basicConfig(filename='extract.log',
 					level=logging.INFO,
 					format='%(asctime)s - %(levelname)s - %(message)s')
@@ -33,19 +42,20 @@ def extract():
 		logging.error(f"Fetch error: {e}")
 
 def save(counts):
-	filename = os.path.join("data", "raw", "parking_data.json")
-	try:
-		with open(filename, 'r') as f:
-			cumulative_data = json.load(f)
-	except Exception as e:
-		logging.error(f"JSON load failed - NOT overwriting. Error: {e}")
-		return
+	# filename = os.path.join("data", "raw", "parking_data.json")
+	# try:
+	# 	with open(filename, 'r') as f:
+	# 		cumulative_data = json.load(f)
+	# except Exception as e:
+	# 	logging.error(f"JSON load failed - NOT overwriting. Error: {e}")
+	# 	return
 	
-	cumulative_data.extend(counts)
+	# cumulative_data.extend(counts)
 
 	try:
-		with open(filename, 'w') as f:
-			json.dump(cumulative_data, f, indent=2)
+		supabase.table("raw_data").insert(counts).execute()
+		# with open(filename, 'w') as f:
+		# 	json.dump(cumulative_data, f, indent=2)
 		logging.info(f"Successfully saved data for {len(counts)} garages")
 	except Exception as e:
 		logging.error(f"Write error: {e}")
