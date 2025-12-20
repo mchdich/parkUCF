@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -57,45 +58,43 @@ function highlightJson(line: string) {
   return parts;
 }
 
+import { useEffect, useRef, useState } from "react";
+
 export default function Home() {
-  const jsonLines = [
-    `[`,
-    `  {`,
-    `    "location": {`,
-    `      "available_count_offset": 0,`,
-    `      "counts": {`,
-    `        "location_name": "Garage A",`,
-    `        "api_location_id": 134,`,
-    `        "parking_location_id": 3,`,
-    `        "available": 1625,`,
-    `        "occupied": 22,`,
-    `        "out_of_service": false,`,
-    `        "display_on_web": true,`,
-    `        "reserved": 0,`,
-    `        "event_reserved": 0,`,
-    `        "event_id": 0,`,
-    `        "event_name": null,`,
-    `        "timestamp": "12/17/2025 23:55:16.362",`,
-    `        "total": 1647,`,
-    `        "vacant": 1603,`,
-    `        "timeStampDate": "12/17/2025",`,
-    `        "timeStampTime": "6:55 PM"`,
-    `      },`,
-    `      "extended_properties": {`,
-    `        "entry_lane_ids": null,`,
-    `        "exit_lane_ids": null,`,
-    `        "last_contact_timestamp": "...",`,
-    `        "next_scheduled_reset_limit": null,`,
-    `        "reset_time": null,`,
-    `        "reset_value": "0"`,
-    `      },`,
-    `      "id": 134,`,
-    `      "is_out_of_service": true,`,
-    `      "name": "Garage A",`,
-    `      "plugin": null`,
-    `    }`,
-    `  },`,
-  ];
+  const [jsonLines, setJsonLines] = useState<string[]>([]);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Fetch JSON file from public/sample.json
+  useEffect(() => {
+    fetch("/sample.json")
+      .then((res) => res.text())
+      .then((text) => {
+        setJsonLines(text.split("\n"));
+      });
+  }, []);
+
+  // Auto-scroll effect
+  useEffect(() => {
+    if (!jsonLines.length) return;
+    const scrollDiv = scrollRef.current;
+    if (!scrollDiv) return;
+    let frame: number;
+    let frameCount = 0;
+    function step() {
+      if (!scrollDiv) return;
+      if (scrollDiv.scrollTop + scrollDiv.clientHeight < scrollDiv.scrollHeight) {
+        frameCount++;
+        if (frameCount % 10 === 0){
+          scrollDiv.scrollTop += 0.5;
+        }
+        frame = requestAnimationFrame(step);
+      }
+    }
+    frame = requestAnimationFrame(step);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [jsonLines]);
 
   return (
     <div className="relative min-h-screen font-sans bg-black">
@@ -139,25 +138,25 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Right side - Code block with line numbers and fade */}
+          {/* Right side - Code block with auto-scroll and fade */}
           <div className="relative">
-            <div className="rounded-lg overflow-hidden max-h-[500px] border border-gray-600 bg-[#0d0d0d]">
-              <pre className="">
-                <code className="grid grid-cols-[auto_1fr] font-mono">
+            <div
+              ref={scrollRef}
+              className="rounded-lg overflow-y-auto max-h-[500px] border border-gray-600 bg-[#0d0d0d] scrollbar-hide"
+              style={{ scrollBehavior: "smooth", msOverflowStyle: "none", scrollbarWidth: "none" }}
+            >
+              <style>{`
+                .scrollbar-hide::-webkit-scrollbar { display: none; }
+              `}</style>
+              <pre>
+                <code className="font-mono">
                   {jsonLines.map((line, index) => (
-                    <div key={index} className="contents">
-                      {/* Line number */}
-                      <div className="select-none text-right text-gray-300 bg-[#1a1a1a] px-3 py-0.5 min-h-[1.5rem] leading-6">
-                        {index + 1}
-                      </div>
-                      {/* Code content with syntax highlighting */}
-                      <div className="px-4 py-0.5 min-h-[1.5rem] leading-6 whitespace-pre">
-                        {highlightJson(line).map((part, i) => (
-                          <span key={i} className={part.color}>
-                            {part.text}
-                          </span>
-                        ))}
-                      </div>
+                    <div key={index} className="px-4 py-0.5 min-h-[1.5rem] leading-6 whitespace-pre">
+                      {highlightJson(line).map((part, i) => (
+                        <span key={i} className={part.color}>
+                          {part.text}
+                        </span>
+                      ))}
                     </div>
                   ))}
                 </code>
