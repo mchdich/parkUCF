@@ -63,6 +63,7 @@ import { useEffect, useRef, useState } from "react";
 export default function Home() {
   const [jsonLines, setJsonLines] = useState<string[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [animationStage, setAnimationStage] = useState<'hidden' | 'horizontal' | 'vertical' | 'done'>('hidden');
 
   // Fetch JSON file from public/sample.json
   useEffect(() => {
@@ -70,6 +71,10 @@ export default function Home() {
       .then((res) => res.text())
       .then((text) => {
         setJsonLines(text.split("\n"));
+        // Start TV turn-on animation once data is ready
+        setAnimationStage('horizontal');
+        setTimeout(() => setAnimationStage('vertical'), 400);
+        setTimeout(() => setAnimationStage('done'), 900);
       });
   }, []);
 
@@ -125,35 +130,58 @@ export default function Home() {
 
       {/* Main content */}
       <section className="relative z-10 min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24 py-12">
-        <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left side - Text content */}
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-              Garages A through I.
-              <br />
-              <span className="text-gray-400">At your fingertips.</span>
-            </h1>
-            <p className="tracking-tight text-lg md:text-xl text-gray-400 max-w-lg">
-              AI-powered predictions and insights based on months of parking garage data to help you find a spot at UCF without the loop.
-            </p>
-          </div>
-
-          {/* Right side - Code block with auto-scroll and fade */}
-          <div className="relative">
-            <div
-              ref={scrollRef}
-              className="rounded-lg overflow-y-auto max-h-[500px] border border-gray-600 bg-[#0d0d0d] scrollbar-hide"
-              style={{ scrollBehavior: "smooth", msOverflowStyle: "none", scrollbarWidth: "none" }}
-            >
-              <style>{`
-                .scrollbar-hide::-webkit-scrollbar { display: none; }
-              `}</style>
+        <div className="relative flex flex-col items-center justify-center w-full max-w-3xl mx-auto" style={{ minHeight: 500 }}>
+          {/* Code block with TV turn-on animation */}
+          <style>{`
+            .scrollbar-hide::-webkit-scrollbar { display: none; }
+            .tv-off {
+              width: 0;
+              height: 2px;
+              opacity: 0;
+            }
+            .tv-horizontal {
+              width: 100%;
+              height: 2px;
+              opacity: 1;
+              transition: width 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.2s;
+            }
+            .tv-vertical {
+              width: 100%;
+              height: 500px;
+              opacity: 1;
+              transition: height 0.5s cubic-bezier(0.4,0,0.2,1);
+            }
+            .tv-done {
+              width: 100%;
+              max-height: 500px;
+              height: auto;
+              opacity: 1;
+              transition: height 0.3s;
+            }
+          `}</style>
+          <div
+            ref={scrollRef}
+            className={`rounded-xl overflow-y-auto border border-gray-700 bg-black/60 backdrop-blur-md shadow-lg scrollbar-hide ${
+              animationStage === 'hidden' ? 'tv-off' :
+              animationStage === 'horizontal' ? 'tv-horizontal' :
+              animationStage === 'vertical' ? 'tv-vertical' : 'tv-done'
+            }`}
+            style={{
+              scrollBehavior: "smooth",
+              msOverflowStyle: "none",
+              scrollbarWidth: "none",
+              boxShadow: '0 4px 32px 0 rgba(0,0,0,0.25)',
+              margin: '0 auto',
+              overflow: animationStage === 'done' ? 'auto' : 'hidden',
+            }}
+          >
+            {jsonLines.length > 0 && (
               <pre>
-                <code className="font-mono">
+                <code className="font-mono text-gray-300 text-opacity-80">
                   {jsonLines.map((line, index) => (
                     <div key={index} className="px-4 py-0.5 min-h-[1.5rem] leading-6 whitespace-pre">
                       {highlightJson(line).map((part, i) => (
-                        <span key={i} className={part.color}>
+                        <span key={i} className={part.color + ' opacity-80'} style={{ filter: 'brightness(0.85) saturate(0.7)' }}>
                           {part.text}
                         </span>
                       ))}
@@ -161,9 +189,20 @@ export default function Home() {
                   ))}
                 </code>
               </pre>
+            )}
+          </div>
+          {/* Hero text overlayed and centered */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+            <div className="space-y-6 text-center px-4" style={{ textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-white/90">
+                Garages A through I.
+                <br />
+                <span className="text-gray-300/80">At your fingertips.</span>
+              </h1>
+              <p className="tracking-tight text-lg md:text-xl text-gray-200/80 max-w-lg mx-auto">
+                AI-powered predictions and insights based on months of parking garage data to help you find a spot at UCF without the loop.
+              </p>
             </div>
-            {/* Fading gradient at bottom - matches bg-black */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
           </div>
         </div>
       </section>

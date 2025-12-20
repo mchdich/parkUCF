@@ -1,62 +1,502 @@
 [
   {
-    "name": "Garage A",
-    "available": 1647,
-    "occupied": 0,
-    "total": 1647,
-    "occupancy_rate": 0,
-    "event_reserved": 0,
-    "event_name": null,
-    "timestamp": "12/14/2025 02:25:16.341"
+    "name":"Garage A",
+    "available":1647,
+    "occupied":0,
+    "total":1647,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505517937
   },
   {
-    "name": "Garage B",
-    "available": 1289,
-    "occupied": 0,
-    "total": 1289,
-    "occupancy_rate": 0,
-    "event_reserved": 0,
-    "event_name": null,
-    "timestamp": "12/14/2025 02:25:16.341"
+    "name":"Garage B",
+    "available":1289,
+    "occupied":0,
+    "total":1289,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505517937
   },
   {
-    "name": "Garage C",
-    "available": 1822,
-    "occupied": 30,
-    "total": 1852,
-    "occupancy_rate": 0.016,
-    "event_reserved": 0,
-    "event_name": null,
-    "timestamp": "12/14/2025 02:25:16.341"
+    "name":"Garage C",
+    "available":1852,
+    "occupied":0,
+    "total":1852,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505517937
   },
   {
-    "name": "Garage D",
-    "available": 251,
-    "occupied": 1028,
-    "total": 1289,
-    "occupancy_rate": 0.798,
-    "event_reserved": 0,
-    "event_name": null,
-    "timestamp": "12/14/2025 02:25:16.341"
+    "name":"Garage H",
+    "available":1340,
+    "occupied":0,
+    "total":1340,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505517937
   },
   {
-    "name": "Garage H",
-    "available": 223,
-    "occupied": 1117,
-    "total": 1340,
-    "occupancy_rate": 0.834,
-    "event_reserved": 0,
-    "event_name": null,
-    "timestamp": "12/14/2025 02:25:16.341"
+    "name":"Garage A",
+    "available":1647,
+    "occupied":0,
+    "total":1647,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505637570
   },
   {
-    "name": "Garage I",
-    "available": 52,
-    "occupied": 1218,
-    "total": 1270,
-    "occupancy_rate": 0.959,
-    "event_reserved": 0,
-    "event_name": null,
-    "timestamp": "12/14/2025 02:25:16.341"
+    "name":"Garage B",
+    "available":1289,
+    "occupied":0,
+    "total":1289,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505637570
+  },
+  {
+    "name":"Garage C",
+    "available":1852,
+    "occupied":0,
+    "total":1852,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505637570
+  },
+  {
+    "name":"Garage H",
+    "available":1340,
+    "occupied":0,
+    "total":1340,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505637570
+  },
+  {
+    "name":"Garage A",
+    "available":1647,
+    "occupied":0,
+    "total":1647,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505756635
+  },
+  {
+    "name":"Garage B",
+    "available":1289,
+    "occupied":0,
+    "total":1289,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505756635
+  },
+  {
+    "name":"Garage C",
+    "available":1852,
+    "occupied":0,
+    "total":1852,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505756635
+  },
+  {
+    "name":"Garage H",
+    "available":1340,
+    "occupied":0,
+    "total":1340,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505756635
+  },
+  {
+    "name":"Garage A",
+    "available":1647,
+    "occupied":0,
+    "total":1647,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505876562
+  },
+  {
+    "name":"Garage B",
+    "available":1289,
+    "occupied":0,
+    "total":1289,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505876562
+  },
+  {
+    "name":"Garage C",
+    "available":1852,
+    "occupied":0,
+    "total":1852,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505876562
+  },
+  {
+    "name":"Garage H",
+    "available":1340,
+    "occupied":0,
+    "total":1340,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505876562
+  },
+  {
+    "name":"Garage A",
+    "available":1647,
+    "occupied":0,
+    "total":1647,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505996557
+  },
+  {
+    "name":"Garage B",
+    "available":1289,
+    "occupied":0,
+    "total":1289,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505996557
+  },
+  {
+    "name":"Garage C",
+    "available":1852,
+    "occupied":0,
+    "total":1852,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505996557
+  },
+  {
+    "name":"Garage H",
+    "available":1340,
+    "occupied":0,
+    "total":1340,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758505996557
+  },
+  {
+    "name":"Garage A",
+    "available":1647,
+    "occupied":0,
+    "total":1647,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506116646
+  },
+  {
+    "name":"Garage B",
+    "available":1289,
+    "occupied":0,
+    "total":1289,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506116646
+  },
+  {
+    "name":"Garage C",
+    "available":1852,
+    "occupied":0,
+    "total":1852,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506116646
+  },
+  {
+    "name":"Garage H",
+    "available":1340,
+    "occupied":0,
+    "total":1340,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506116646
+  },
+  {
+    "name":"Garage A",
+    "available":1647,
+    "occupied":0,
+    "total":1647,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506236787
+  },
+  {
+    "name":"Garage B",
+    "available":1289,
+    "occupied":0,
+    "total":1289,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506236787
+  },
+  {
+    "name":"Garage C",
+    "available":1852,
+    "occupied":0,
+    "total":1852,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506236787
+  },
+  {
+    "name":"Garage H",
+    "available":1340,
+    "occupied":0,
+    "total":1340,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506236787
+  },
+  {
+    "name":"Garage A",
+    "available":1647,
+    "occupied":0,
+    "total":1647,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506356568
+  },
+  {
+    "name":"Garage B",
+    "available":1289,
+    "occupied":0,
+    "total":1289,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506356568
+  },
+  {
+    "name":"Garage C",
+    "available":1852,
+    "occupied":0,
+    "total":1852,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506356568
+  },
+  {
+    "name":"Garage H",
+    "available":1340,
+    "occupied":0,
+    "total":1340,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506356568
+  },
+  {
+    "name":"Garage A",
+    "available":1647,
+    "occupied":0,
+    "total":1647,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506476673
+  },
+  {
+    "name":"Garage B",
+    "available":1289,
+    "occupied":0,
+    "total":1289,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506476673
+  },
+  {
+    "name":"Garage C",
+    "available":1852,
+    "occupied":0,
+    "total":1852,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506476673
+  },
+  {
+    "name":"Garage H",
+    "available":1340,
+    "occupied":0,
+    "total":1340,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506476673
+  },
+  {
+    "name":"Garage A",
+    "available":1647,
+    "occupied":0,
+    "total":1647,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506596556
+  },
+  {
+    "name":"Garage B",
+    "available":1289,
+    "occupied":0,
+    "total":1289,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506596556
+  },
+  {
+    "name":"Garage C",
+    "available":1852,
+    "occupied":0,
+    "total":1852,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506596556
+  },
+  {
+    "name":"Garage H",
+    "available":1340,
+    "occupied":0,
+    "total":1340,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506596556
+  },
+  {
+    "name":"Garage A",
+    "available":1647,
+    "occupied":0,
+    "total":1647,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506716728
+  },
+  {
+    "name":"Garage B",
+    "available":1289,
+    "occupied":0,
+    "total":1289,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506716728
+  },
+  {
+    "name":"Garage C",
+    "available":1852,
+    "occupied":0,
+    "total":1852,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506716728
+  },
+  {
+    "name":"Garage H",
+    "available":1340,
+    "occupied":0,
+    "total":1340,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506716728
+  },
+  {
+    "name":"Garage A",
+    "available":1647,
+    "occupied":0,
+    "total":1647,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506836559
+  },
+  {
+    "name":"Garage B",
+    "available":1289,
+    "occupied":0,
+    "total":1289,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506836559
+  },
+  {
+    "name":"Garage C",
+    "available":1852,
+    "occupied":0,
+    "total":1852,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506836559
+  },
+  {
+    "name":"Garage H",
+    "available":1340,
+    "occupied":0,
+    "total":1340,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506836559
+  },
+  {
+    "name":"Garage A",
+    "available":1647,
+    "occupied":0,
+    "total":1647,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506956571
+  },
+  {
+    "name":"Garage B",
+    "available":1289,
+    "occupied":0,
+    "total":1289,
+    "occupancy_rate":0.0,
+    "event_reserved":null,
+    "event_name":null,
+    "timestamp":1758506956571
   }
 ]
