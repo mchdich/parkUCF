@@ -56,6 +56,6 @@ app.MapGet("/api/daily", async () =>
     var daily = result.Models;
     return daily;
 })
-.WithName("GetWeeklyForecast");
+.WithName("GetDailyForecast");
 
 app.Run();
