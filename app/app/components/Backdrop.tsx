@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Backdrop() {
     return(
-        <div className="absolute inset-x-0 top-0 h-[50vh] z-0">
+        <div className="absolute inset-x-0 top-0 h-[100vh] z-0">
             <Image
             src="/ucf.jpg"
             alt="UCF Campus"
