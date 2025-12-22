@@ -12,12 +12,18 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://localhost:3000","https://parkucf.mehdi.ch")
               .WithMethods("GET")
-              .AllowAnyMethod();
+              .AllowAnyHeader();
     });
 });
 
+
 var url = Environment.GetEnvironmentVariable("SUPABASE_URL");
 var key = Environment.GetEnvironmentVariable("SERVICE_ROLE");
+if (string.IsNullOrWhiteSpace(url) || string.IsNullOrWhiteSpace(key))
+{
+    Console.WriteLine("ERROR: SUPABASE_URL or SERVICE_ROLE environment variable is missing or empty.");
+    return;
+}
 var options = new Supabase.SupabaseOptions
 {
     AutoConnectRealtime = true
