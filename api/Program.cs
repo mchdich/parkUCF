@@ -1,8 +1,20 @@
+using Microsoft.VisualBasic;
+using ParkUCF.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+var url = Environment.GetEnvironmentVariable("SUPABASE_URL");
+var key = Environment.GetEnvironmentVariable("SERVICE_ROLE");
+var options = new Supabase.SupabaseOptions
+{
+    AutoConnectRealtime = true
+};
+var supabase = new Supabase.Client(url, key, options);
+await supabase.InitializeAsync();
 
 var app = builder.Build();
 
@@ -14,28 +26,20 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/api/weekly", async () =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    var result = await supabase.From<WeeklyDP>().Get();
+    var weekly = result.Models;
+    return weekly;
 })
-.WithName("GetWeatherForecast");
+.WithName("GetWeeklyForecast");
+
+app.MapGet("/api/daily", async () =>
+{
+    var result = await supabase.From<DailyDP>().Get();
+    var daily = result.Models;
+    return daily;
+})
+.WithName("GetWeeklyForecast");
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

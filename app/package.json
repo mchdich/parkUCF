@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.89.0",
+    "chart.js": "^4.5.1",
+    "chartjs-plugin-deferred": "^2.0.0",
     "express": "^5.2.1",
     "next": "16.0.10",
     "react": "19.2.1",
