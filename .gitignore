@@ -4,3 +4,4 @@ venv/
 .env
 src/
 notebooks/
+app/node_modules/
