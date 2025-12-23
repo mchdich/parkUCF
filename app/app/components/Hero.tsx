@@ -130,7 +130,7 @@ export default function Hero() {
           `}</style>
           <div
             ref={scrollRef}
-            className={`rounded-xl overflow-y-auto border border-gray-700 bg-black/60 backdrop-blur-md shadow-lg scrollbar-hide ${
+            className={`rounded-xl overflow-y-auto border border-black/10 dark:border-white/10 bg-black/60 backdrop-blur-md shadow-lg scrollbar-hide ${
               animationStage === 'hidden' ? 'tv-off' :
               animationStage === 'horizontal' ? 'tv-horizontal' :
               animationStage === 'vertical' ? 'tv-vertical' : 'tv-done'
