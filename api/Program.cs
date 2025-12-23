@@ -63,7 +63,7 @@ app.MapGet("/api/daily", async () =>
         x.X,
         x.Y
     });
-    Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(weekly));
+    Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(daily));
     return Results.Json(daily);
 })
 .WithName("GetDailyForecast");
