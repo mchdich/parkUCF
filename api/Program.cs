@@ -45,16 +45,24 @@ app.UseHttpsRedirection();
 app.MapGet("/api/weekly", async () =>
 {
     var result = await supabase.From<WeeklyDP>().Get();
-    var weekly = result.Models;
-    return weekly;
+    var weekly = result.Models.Select(x => new {
+        x.id,
+        x.x,
+        x.y
+    });
+    return Results.Json(weekly);
 })
 .WithName("GetWeeklyForecast");
 
 app.MapGet("/api/daily", async () =>
 {
     var result = await supabase.From<DailyDP>().Get();
-    var daily = result.Models;
-    return daily;
+    var daily = result.Models.Select(x => new {
+        x.id,
+        x.x,
+        x.y
+    });
+    return Results.Json(daily);
 })
 .WithName("GetDailyForecast");
 

@@ -18,14 +18,14 @@ export default function DynamicChart (props: {type: string}) {
                     plugins: [ChartDeferred],
                     type: 'line',
                     data: {
-                        labels: data.map((x: any) => x.day),
+                        labels: data.map((x: any) => props.type === 'weekly' ? x.day : x.hour),
                         datasets: [
                             ...['a','b','c','d','g','h','i'].map(letter => ({
                                 label: letter.toUpperCase(),
                                 data: data
                                     .filter((row: any) => row.id[0] === letter)
                                     .map((row: any) => ({
-                                        x: row.x,
+                                        x: props.type === 'weekly' ? row.day : row.hour,
                                         y: row.y,
                                     }))
                             }))

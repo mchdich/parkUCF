@@ -5,4 +5,4 @@ venv/
 src/
 notebooks/
 app/node_modules/
-app/./next
+app/.next/
