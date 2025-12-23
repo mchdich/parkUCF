@@ -46,9 +46,9 @@ app.MapGet("/api/weekly", async () =>
 {
     var result = await supabase.From<WeeklyDP>().Get();
     var weekly = result.Models.Select(x => new {
-        x.id,
-        x.x,
-        x.y
+        x.Id,
+        x.X,
+        x.Y
     });
     return Results.Json(weekly);
 })

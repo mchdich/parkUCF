@@ -7,7 +7,7 @@ namespace ParkUCF.Models
     class WeeklyDP : BaseModel
     {
         [PrimaryKey("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         [Column("x")]
         public DateTimeOffset X { get; set; }
