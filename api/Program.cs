@@ -50,6 +50,7 @@ app.MapGet("/api/weekly", async () =>
         x.X,
         x.Y
     });
+    Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(weekly));
     return Results.Json(weekly);
 })
 .WithName("GetWeeklyForecast");
@@ -62,6 +63,7 @@ app.MapGet("/api/daily", async () =>
         x.X,
         x.Y
     });
+    Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(weekly));
     return Results.Json(daily);
 })
 .WithName("GetDailyForecast");
