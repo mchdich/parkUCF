@@ -58,9 +58,9 @@ app.MapGet("/api/daily", async () =>
 {
     var result = await supabase.From<DailyDP>().Get();
     var daily = result.Models.Select(x => new {
-        x.id,
-        x.x,
-        x.y
+        x.Id,
+        x.X,
+        x.Y
     });
     return Results.Json(daily);
 })
