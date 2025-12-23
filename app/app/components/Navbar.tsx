@@ -7,7 +7,7 @@ export default function Navbar() {
                 <Link href="/" className="font-sm text-sm sm:text-base hover:opacity-80 transition-opacity">
                     parkUCF
                 </Link>
-                <Link href="/how" className="font-sm text-sm sm:text-base hover:opacity-80 transition-opacity">
+                <Link href="/how" className="font-sm text-sm sm:text-base hover:opacity-80 transition-opacity whitespace-nowrap">
                     How it works
                 </Link>
                 <Link href="/about" className="text-sm sm:text-base hover:opacity-80 transition-opacity">
