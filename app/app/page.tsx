@@ -11,18 +11,48 @@ import { ScrollSmoother, ScrollTrigger } from 'gsap/all';
 export default function Home() {
   useGSAP(() => {
     gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
-    ScrollSmoother.create({
-      smooth: 1,
-      effects: true
+
+    // Create the pinned scroll animation for the hero section
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#hero-pin-section',
+        start: 'top top',
+        end: '+=300%', // 3 scroll units
+        pin: true,
+        scrub: 1,
+      }
     });
+
+    // Stage 1 (0-33%): Hero fades 50%, moves up slightly, backdrop zooms out a bit, TV opens horizontally
+    tl.to('#hero-text', { opacity: 0.5, y: -30, duration: 1 }, 0)
+      .to('#backdrop-image', { scale: 1.2, duration: 1 }, 0)
+      .to('#tv-container', { width: '100%', opacity: 1, duration: 1 }, 0);
+
+    // Stage 2 (33-66%): Hero completely fades, backdrop zooms more, TV expands upward partially
+    tl.to('#hero-text', { opacity: 0, y: -60, duration: 1 }, 1)
+      .to('#backdrop-image', { scale: 1.1, duration: 1 }, 1)
+      .to('#tv-container', { height: '350px', overflow: 'auto', duration: 1 }, 1);
+
+    // Stage 3 (66-100%): Backdrop fits screen, TV fully opens
+    tl.to('#backdrop-image', { scale: 1, duration: 1 }, 2)
+      .to('#tv-container', { height: '500px', duration: 1 }, 2);
+
+    // After the pinned section, enable smooth scrolling for the rest
+    // ScrollSmoother.create({
+    //   wrapper: '#smooth-wrapper',
+    //   content: '#smooth-content',
+    //   smooth: 1,
+    //   effects: true
+    // });
   }, []);
   return (
     <div id="smooth-wrapper" className="relative min-h-screen font-sans bg-black">
+      <Navbar />
       <div id="smooth-content">
-        <Navbar />
-        <Backdrop />
-        <Hero />
-
+        <div id="hero-pin-section" className="relative min-h-screen">
+          <Backdrop />
+          <Hero />
+        </div>
         {/* Why parkUCF section */}
         <section className="relative z-10 px-6 md:px-12 lg:px-24 py-24 bg-black">
           <div className="max-w-3xl mx-auto space-y-6">

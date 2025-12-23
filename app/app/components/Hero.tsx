@@ -59,7 +59,6 @@ const highlightJson = (line: string) => {
 export default function Hero() {
   const [jsonLines, setJsonLines] = useState<string[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [animationStage, setAnimationStage] = useState<'hidden' | 'horizontal' | 'vertical' | 'done'>('hidden');
 
   // Fetch JSON file from public/sample.json
   useEffect(() => {
@@ -67,10 +66,6 @@ export default function Hero() {
       .then((res) => res.text())
       .then((text) => {
         setJsonLines(text.split("\n"));
-        // Start TV turn-on animation once data is ready
-        setAnimationStage('horizontal');
-        setTimeout(() => setAnimationStage('vertical'), 400);
-        setTimeout(() => setAnimationStage('done'), 900);
       });
   }, []);
 
@@ -103,54 +98,30 @@ export default function Hero() {
           {/* Code block with TV turn-on animation */}
           <style>{`
             .scrollbar-hide::-webkit-scrollbar { display: none; }
-            .tv-off {
-              width: 0;
-              height: 2px;
-              opacity: 0;
-            }
-            .tv-horizontal {
-              width: 100%;
-              height: 2px;
-              opacity: 1;
-              transition: width 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.2s;
-            }
-            .tv-vertical {
-              width: 100%;
-              height: 500px;
-              opacity: 1;
-              transition: height 0.5s cubic-bezier(0.4,0,0.2,1);
-            }
-            .tv-done {
-              width: 100%;
-              max-height: 500px;
-              height: auto;
-              opacity: 1;
-              transition: height 0.3s;
-            }
           `}</style>
           <div
+            id="tv-container"
             ref={scrollRef}
-            className={`rounded-xl overflow-y-auto border border-black/10 dark:border-white/10 bg-black/60 backdrop-blur-md shadow-lg scrollbar-hide ${
-              animationStage === 'hidden' ? 'tv-off' :
-              animationStage === 'horizontal' ? 'tv-horizontal' :
-              animationStage === 'vertical' ? 'tv-vertical' : 'tv-done'
-            }`}
+            className="rounded-xl overflow-y-auto border border-black/10 dark:border-white/10 bg-black/60 backdrop-blur-md shadow-lg scrollbar-hide"
             style={{
               scrollBehavior: "smooth",
               msOverflowStyle: "none",
               scrollbarWidth: "none",
               boxShadow: '0 4px 32px 0 rgba(0,0,0,0.25)',
               margin: '0 auto',
-              overflow: animationStage === 'done' ? 'auto' : 'hidden',
+              width: '0%',
+              height: '2px',
+              opacity: 0,
+              overflow: 'hidden',
             }}
           >
             {jsonLines.length > 0 && (
               <pre>
-                <code className="font-mono text-gray-300 text-opacity-80">
+                <code className="font-mono text-gray-300">
                   {jsonLines.map((line, index) => (
                     <div key={index} className="px-4 py-0.5 min-h-[1.5rem] leading-6 whitespace-pre">
                       {highlightJson(line).map((part, i) => (
-                        <span key={i} className={part.color + ' opacity-80'} style={{ filter: 'brightness(0.85) saturate(0.7)' }}>
+                        <span key={i} className={part.color}>
                           {part.text}
                         </span>
                       ))}
@@ -161,7 +132,7 @@ export default function Hero() {
             )}
           </div>
           {/* Hero text overlayed and centered */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+          <div id="hero-text" className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <div className="space-y-6 text-center px-4" style={{ textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-white/90">
                 Garages A through I.
