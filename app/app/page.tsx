@@ -4,7 +4,6 @@ import Backdrop from './components/Backdrop';
 import Hero from './components/Hero';
 import Why from './components/Why';
 import Prediction from './components/Prediction';
-import DynamicChart from './components/DynamicChart';
 
 export default function Home() {
   return (

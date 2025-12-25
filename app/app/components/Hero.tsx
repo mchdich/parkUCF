@@ -87,6 +87,9 @@ export default function Hero() {
       // Stage 3 (66-100%): Backdrop fits screen, TV fully opens
       tl.to('#backdrop-image', { scale: 1, duration: 1 }, 2)
         .to('#tv-container', { height: '500px', duration: 1 }, 2);
+
+      // Fade out scroll indicator as animation progresses (starts fading at 50%, fully gone by 80%)
+      tl.to('#scroll-indicator', { opacity: 0, duration: 0.2 }, 3);
     }, []);
   
   
@@ -147,6 +150,13 @@ export default function Hero() {
             overscroll-behavior: contain;
             touch-action: none;
           }
+          @keyframes bounce-arrow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+          }
+          .bounce-arrow {
+            animation: bounce-arrow 1.5s ease-in-out infinite;
+          }
         `}</style>
         <div
           id="tv-container"
@@ -185,6 +195,22 @@ export default function Hero() {
             </p>
           </div>
         </div>
+      </div>
+      {/* Scroll down indicator */}
+      <div
+        id="scroll-indicator"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/70 pointer-events-none"
+      >
+        <span className="text-sm tracking-wide">scroll down</span>
+        <svg
+          className="w-6 h-6 bounce-arrow"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
       </div>
     </section>
   )
