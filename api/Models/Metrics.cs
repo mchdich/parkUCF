@@ -7,7 +7,7 @@ namespace ParkUCF.Models
     class Metrics : BaseModel
     {
         [PrimaryKey("one")]
-        public int One { get; set; }
+        public short One { get; set; }
 
         [Column("time")]
         public string? Time { get; set; }
