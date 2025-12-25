@@ -2,7 +2,7 @@ import Chart from 'chart.js/auto';
 // import 'chartjs-adapter-date-fns'
 import 'chartjs-adapter-luxon';
 import ChartDeferred from 'chartjs-plugin-deferred';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 
 export default function DynamicChart (props: {type: string, garage: string}) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
