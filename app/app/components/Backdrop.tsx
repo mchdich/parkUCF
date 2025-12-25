@@ -9,10 +9,6 @@ export default function Backdrop() {
                         alt="UCF Campus"
                         fill
                         className="object-cover brightness-25"
-                        style={{
-                            transform: 'scale(1.3)',
-                            objectPosition: 'center',
-                        }}
                         priority
                         sizes="100vw"
                         // Responsive objectPosition: right for mobile, center for md+

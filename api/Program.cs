@@ -68,4 +68,21 @@ app.MapGet("/api/daily", async () =>
 })
 .WithName("GetDailyForecast");
 
+app.MapGet("/api/metrics", async () =>
+{
+    var result = await supabase.From<Metrics>().Get();
+    var metrics = result.Models.Select(x => new {
+        x.Time,
+        x.Timeval,
+        x.Garage,
+        x.Garageval,
+        x.Maxsum,
+        x.Maxval,
+        x.Poc
+    });
+    Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(metrics));
+    return Results.Json(metrics);
+})
+.WithName("GetMetrics");
+
 app.Run();

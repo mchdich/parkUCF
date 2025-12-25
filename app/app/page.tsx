@@ -4,6 +4,7 @@ import Backdrop from './components/Backdrop';
 import Hero from './components/Hero';
 import Why from './components/Why';
 import Prediction from './components/Prediction';
+import Metrics from './components/Metrics';
 
 export default function Home() {
   return (
@@ -13,10 +14,11 @@ export default function Home() {
           <Backdrop />
           <Hero />
         </div>
-        <section className="relative z-10 px-6 md:px-12 lg:px-24 py-24 bg-black">
+        <section className="relative z-10 px-6 md:px-12 lg:px-15 py-15 bg-black">
           <div className="max-w-3xl mx-auto space-y-6">
             <Why />
             <Prediction />
+            <Metrics />
           </div>
         </section>
         <footer className="text-sm text-gray-400 text-center">
