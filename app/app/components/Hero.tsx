@@ -1,5 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/all';
 
 const highlightJson = (line: string) => {
   const parts: { text: string; color: string }[] = [];
@@ -57,6 +60,36 @@ const highlightJson = (line: string) => {
 }
 
 export default function Hero() {
+    useGSAP(() => {
+      gsap.registerPlugin(ScrollTrigger);
+  
+      // Create the pinned scroll animation for the hero section
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#hero-pin-section',
+          start: 'top top',
+          end: '+=300%', // 3 scroll units
+          pin: true,
+          scrub: 1,
+        }
+      });
+  
+      // Stage 1 (0-33%): Hero fades 50%, moves up slightly, backdrop zooms out a bit, TV opens horizontally
+      tl.to('#hero-text', { opacity: 0.5, y: -30, duration: 1 }, 0)
+        .to('#backdrop-image', { scale: 1.2, duration: 1 }, 0)
+        .to('#tv-container', { width: '100%', opacity: 1, duration: 1 }, 0);
+  
+      // Stage 2 (33-66%): Hero completely fades, backdrop zooms more, TV expands upward partially
+      tl.to('#hero-text', { opacity: 0, y: -60, duration: 1 }, 1)
+        .to('#backdrop-image', { scale: 1.1, duration: 1 }, 1)
+        .to('#tv-container', { height: '350px', overflow: 'auto', duration: 1 }, 1);
+  
+      // Stage 3 (66-100%): Backdrop fits screen, TV fully opens
+      tl.to('#backdrop-image', { scale: 1, duration: 1 }, 2)
+        .to('#tv-container', { height: '500px', duration: 1 }, 2);
+    }, []);
+  
+  
   const [jsonLines, setJsonLines] = useState<string[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -107,6 +140,13 @@ export default function Hero() {
             overflow: hidden;
             transition: width 0.7s cubic-bezier(.4,2,.6,1), height 0.5s cubic-bezier(.4,2,.6,1), opacity 0.3s;
           }
+          #tv-container {
+            pointer-events: none;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            overscroll-behavior: contain;
+            touch-action: none;
+          }
         `}</style>
         <div
           id="tv-container"
@@ -138,12 +178,10 @@ export default function Hero() {
         <div id="hero-text" className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
           <div className="space-y-6 text-center px-4" style={{ textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-white/90">
-              Garages A through I.
-              <br />
-              <span className="text-gray-300/80">At your fingertips.</span>
+              The UCF Parking Dashboard.
             </h1>
             <p className="tracking-tight text-lg md:text-xl text-gray-200/80 max-w-lg mx-auto">
-              AI-powered predictions and insights based on months of parking garage data to help you find a spot at UCF without the loop.
+              AI-powered predictions and insights based on months of parking garage data to make parking less frustrating.
             </p>
           </div>
         </div>
