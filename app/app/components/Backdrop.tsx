@@ -17,7 +17,7 @@ export default function Backdrop() {
                         <style>{`
                             @media (max-width: 640px) {
                                 #backdrop-image {
-                                    object-position: 90% center !important;
+                                    object-position: 88% center !important;
                                 }
                             }
                         `}</style>
