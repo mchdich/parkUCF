@@ -68,6 +68,24 @@ app.MapGet("/api/daily", async () =>
 })
 .WithName("GetDailyForecast");
 
+app.MapGet("/api/daily_log", async () =>
+{
+    var result = await supabase.From<DailyLog>().Get();
+    var daily_log = result.Models.Select(x => new {
+        x.Name,
+        x.Available,
+        x.Occupied,
+        x.Total,
+        x.OccupancyRate,
+        x.EventReserved,
+        x.EventName,
+        x.Timestamp
+    });
+    Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(daily_log));
+    return Results.Json(daily_log);
+})
+.WithName("GetDailyLog");
+
 app.MapGet("/api/metrics", async () =>
 {
     var result = await supabase.From<Metrics>().Get();

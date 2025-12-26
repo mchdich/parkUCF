@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Why from './components/Why';
 import Prediction from './components/Prediction';
 import Metrics from './components/Metrics';
+import Log from './components/Log';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollSmoother, ScrollTrigger } from 'gsap/all';
@@ -30,6 +31,7 @@ export default function Home() {
             <div className="max-w-4xl mx-auto space-y-6">
               <Why />
               <Prediction />
+              <Log />
               <Metrics />
             </div>
           </section>
