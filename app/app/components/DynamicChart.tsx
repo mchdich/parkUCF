@@ -19,7 +19,6 @@ export default function DynamicChart (props: {type: string, garage: string}) {
                         return aTime - bTime;
                     });
 
-                    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
                     console.log(sortedData);
                     const ctx = canvasRef.current;
                     if (!ctx) return;
@@ -65,20 +64,12 @@ export default function DynamicChart (props: {type: string, garage: string}) {
                                         callback: function(value: any) {
                                             return value + '%';
                                         }
-                                    },
-                                    title: {
-                                        display: !isMobile,
-                                        text: 'Cars in garage / total capacity',
                                     }
                                 } : {
                                     ticks: {
                                         callback: function(value: any) {
                                             return value + '%';
                                         }
-                                    },
-                                    title: {
-                                        display: !isMobile,
-                                        text: 'Occupancy compared to baseline average'
                                     }
                                 },
                             },
