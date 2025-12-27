@@ -15,7 +15,6 @@ export default function Metrics() {
         fetch('https://parkucf-hsbpefgpekhph5fv.centralus-01.azurewebsites.net/api/metrics')
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 setMetrics({
                     time: data[0].time,
                     timeval: data[0].timeval,

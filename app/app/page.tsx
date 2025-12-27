@@ -21,18 +21,15 @@ export default function Home() {
   
   return (
     <div id="smooth-wrapper" className="relative min-h-screen font-sans bg-black">
+      <Navbar />
       <div id="smooth-content">
-        <Navbar />
-          <div id="hero-pin-section" className="relative min-h-screen">
+          <div className="relative min-h-screen">
             <Backdrop />
             <Hero />
           </div>
-          <section className="relative z-10 px-6 md:px-12 lg:px-15 py-15 bg-black">
+          <section className="relative z-10 px-6 md:px-12 lg:px-15 py-4 bg-black">
             <div className="max-w-4xl mx-auto space-y-6">
               <Why />
-              <Prediction />
-              <Log />
-              <Metrics />
             </div>
           </section>
           <footer className="text-sm text-gray-400 text-center">

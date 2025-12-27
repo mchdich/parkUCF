@@ -19,9 +19,11 @@ export default function DynamicChart (props: {type: string, garage: string}) {
                         return aTime - bTime;
                     });
 
-                    console.log(sortedData);
                     const ctx = canvasRef.current;
                     if (!ctx) return;
+                    // Destroy any existing chart on this canvas before creating a new one
+                    const existingChart = Chart.getChart(ctx);
+                    if (existingChart) existingChart.destroy();
                     const garageLetters = ['a','b','c','d','g','h','i'];
                     const selectedGarages = props.garage !== 'All'
                         ? [props.garage.toLowerCase()]
@@ -79,6 +81,11 @@ export default function DynamicChart (props: {type: string, garage: string}) {
                                 }
                             },
                             plugins: {
+                                deferred: {
+                                    xOffset: 150,
+                                    yOffset: '20%',
+                                    delay: 200
+                                },
                                 legend: {
                                     labels: {
                                         boxWidth: 20
@@ -113,7 +120,6 @@ export default function DynamicChart (props: {type: string, garage: string}) {
                         plugins: [ChartDeferred],
                         type: 'line',
                         data: {
-                            labels: sortedData.map((x: any) => props.type === 'weekly' ? x.day : x.hour),
                             datasets: [
                                 ...selectedGarages.map(letter => ({
                                     label: letter.toUpperCase(),
