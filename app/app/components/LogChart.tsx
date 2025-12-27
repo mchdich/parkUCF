@@ -71,7 +71,7 @@ export default function LogChart (props: {garage: string}) {
                                         title: function(context: any) {
                                             const date = new Date(context[0].parsed.x);
                                             // Use America/New_York for EST/EDT
-                                            const options = { hour: 'numeric', minute: '2-digit', hour12: true, weekday: 'short', timeZone: 'America/New_York' };
+                                            const options = { hour: 'numeric', minute: '2-digit', hour12: true, weekday: 'short', timeZone: 'America/New_York' } as const;
                                             return date.toLocaleString(undefined, options);
                                         }
                                     }
