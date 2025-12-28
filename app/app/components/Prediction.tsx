@@ -57,7 +57,6 @@ export default function Prediction() {
             )}
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Predicted occupancy trends</h3>
             <div className="rounded-2xl bg-[#181818] text-white px-8 py-10 md:py-12 md:px-12 shadow-lg border border-[#232323] flex flex-col gap-4 max-w-4xl mx-auto" style={{fontFamily: 'inherit'}}>
-                <div className="text-lg md:text-xl font-semibold text-gray-400 mb-2">From 12/20/25 to 1/31/26</div>
                 <div className="flex items-center gap-2">
                     <span>Choose a garage:</span>
                     <div className="relative inline-block text-left" ref={menuRef}>
