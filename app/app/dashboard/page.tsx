@@ -18,7 +18,7 @@ export default function Dashboard() {
   }, []);
   
   return (
-    <div id="smooth-wrapper" className="relative min-h-screen font-sans bg-black">
+    <div id="smooth-wrapper" className="relative min-h-screen font-sans">
       <Navbar />
       <div id="smooth-content" className="relative min-h-screen">
         {/* Backdrop absolutely positioned behind content */}
