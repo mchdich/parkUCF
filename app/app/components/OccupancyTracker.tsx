@@ -28,6 +28,7 @@ type GarageData = {
     letter: string;
     occupancyRate: number;
     timestamp: string;
+    hourAgoRate?: number; // occupancy rate from ~1 hour ago
 };
 
 export default function OccupancyTracker() {
@@ -62,20 +63,40 @@ export default function OccupancyTracker() {
                     return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
                 });
 
+                const now = new Date();
+                const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
+
                 // Get the latest record for each garage letter
                 const latestByGarage: Record<string, GarageData> = {};
+                // Get the record closest to 1 hour ago for each garage
+                const hourAgoByGarage: Record<string, { rate: number; diff: number }> = {};
+
                 for (const row of sorted) {
                     const letter = row.name?.[7];
-                    if (letter && garageOrder.includes(letter) && !latestByGarage[letter]) {
-                        latestByGarage[letter] = {
-                            name: row.name,
-                            letter,
-                            occupancyRate: row.occupancyRate,
-                            timestamp: row.timestamp,
-                        };
+                    if (letter && garageOrder.includes(letter)) {
+                        // Latest record
+                        if (!latestByGarage[letter]) {
+                            latestByGarage[letter] = {
+                                name: row.name,
+                                letter,
+                                occupancyRate: row.occupancyRate,
+                                timestamp: row.timestamp,
+                            };
+                        }
+                        // Find record closest to 1 hour ago
+                        const rowTime = new Date(row.timestamp).getTime();
+                        const diff = Math.abs(rowTime - oneHourAgo.getTime());
+                        if (!hourAgoByGarage[letter] || diff < hourAgoByGarage[letter].diff) {
+                            hourAgoByGarage[letter] = { rate: row.occupancyRate, diff };
+                        }
                     }
-                    // Stop early if we have all garages
-                    if (Object.keys(latestByGarage).length === garageOrder.length) break;
+                }
+
+                // Attach hourAgoRate to each garage
+                for (const letter of garageOrder) {
+                    if (latestByGarage[letter] && hourAgoByGarage[letter]) {
+                        latestByGarage[letter].hourAgoRate = hourAgoByGarage[letter].rate;
+                    }
                 }
 
                 // Order by garageOrder
@@ -103,11 +124,28 @@ export default function OccupancyTracker() {
             {garages.map(g => {
                 const pct = Math.round(g.occupancyRate * 100);
                 const color = getOccupancyColor(g.occupancyRate);
+                const hourAgoPct = g.hourAgoRate !== undefined ? Math.round(g.hourAgoRate * 100) : null;
+                const change = hourAgoPct !== null ? pct - hourAgoPct : null;
                 return (
                     <div key={g.letter} className="flex flex-col gap-1">
                         <div className="flex justify-between items-center text-md">
                             <span className="text-gray-300 font-medium">Garage {g.letter}</span>
-                            <span className="text-white font-semibold">{pct}%</span>
+                            <span className="flex items-center gap-2">
+                                {change !== null && change !== 0 && (
+                                    <span className={`flex items-center text-sm ${change > 0 ? 'text-red-400' : 'text-green-400'}`}>
+                                        {change > 0 ? (
+                                            <svg className="w-3 h-3 mr-0.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 3a1 1 0 01.707.293l5 5a1 1 0 01-1.414 1.414L11 6.414V16a1 1 0 11-2 0V6.414L5.707 9.707a1 1 0 01-1.414-1.414l5-5A1 1 0 0110 3z" clipRule="evenodd" /></svg>
+                                        ) : (
+                                            <svg className="w-3 h-3 mr-0.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 17a1 1 0 01-.707-.293l-5-5a1 1 0 011.414-1.414L9 13.586V4a1 1 0 112 0v9.586l3.293-3.293a1 1 0 011.414 1.414l-5 5A1 1 0 0110 17z" clipRule="evenodd" /></svg>
+                                        )}
+                                        {Math.abs(change)}% past hour
+                                    </span>
+                                )}
+                                {change === 0 && (
+                                    <span className="text-gray-500 text-sm">0% past hour</span>
+                                )}
+                                <span className="text-white font-semibold">{pct}%</span>
+                            </span>
                         </div>
                         <div className="w-full h-2 bg-[#232323] rounded-full overflow-hidden">
                             <div
