@@ -7,54 +7,10 @@ const garages = ["A", "B", "C", "D", "G", "H", "I"];
 export default function Prediction() {
       const [open, setOpen] = useState(false);
       const [selected, setSelected] = useState("All");
-      const [showRotateHint, setShowRotateHint] = useState(false);
       const menuRef = useRef<HTMLDivElement>(null);
-      const predictionRef = useRef<HTMLDivElement>(null);
-
-      useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
-        if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-            setOpen(false);
-        }
-        }
-        if (open) {
-        document.addEventListener("mousedown", handleClickOutside);
-        } else {
-        document.removeEventListener("mousedown", handleClickOutside);
-        }
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-      }, [open]);
-
-            useEffect(() => {
-                if (typeof window === "undefined") return;
-                const isMobilePortrait = () => window.innerWidth < 640 && window.innerHeight > window.innerWidth;
-
-                // Show on page load if mobile portrait
-                if (isMobilePortrait()) setShowRotateHint(true);
-
-                const handleResize = () => {
-                    if (!isMobilePortrait()) setShowRotateHint(false);
-                    else setShowRotateHint(true);
-                };
-                window.addEventListener("resize", handleResize);
-                window.addEventListener("orientationchange", handleResize);
-
-                return () => {
-                    window.removeEventListener("resize", handleResize);
-                    window.removeEventListener("orientationchange", handleResize);
-                };
-            }, []);
 
     return (
-        <div className="mt-16" ref={predictionRef}>
-            {showRotateHint && (
-                <div className="flex items-center justify-center gap-2 mb-4 px-4 py-2 rounded-lg bg-[#232323] text-white text-sm font-semibold animate-pulse border border-[#444]">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
-                    Rotate your phone for a better view
-                </div>
-            )}
+        <div className="mt-16">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Predicted occupancy trends</h3>
             <div className="rounded-2xl bg-[#181818] text-white px-8 py-10 md:py-12 md:px-12 shadow-lg border border-[#232323] flex flex-col gap-4 max-w-4xl mx-auto" style={{fontFamily: 'inherit'}}>
                 <div className="flex items-center gap-2">
