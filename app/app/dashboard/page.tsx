@@ -29,7 +29,7 @@ export default function Dashboard() {
         </div>
         <section className="relative z-10 px-6 md:px-12 lg:px-15 py-15 bg-transparent">
           <div className="max-w-4xl mx-auto space-y-6">
-            <Log />
+            {/*<Log />*/}
             <Prediction />
             <Metrics />
           </div>
