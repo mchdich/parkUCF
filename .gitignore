@@ -6,3 +6,4 @@ src/
 notebooks/
 app/node_modules/
 app/.next/
+api/obj/Debug/

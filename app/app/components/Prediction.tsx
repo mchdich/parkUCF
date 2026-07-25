@@ -1,10 +1,21 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import DynamicChart from "./DynamicChart";
 
 const garages = ["A", "B", "C", "D", "G", "H", "I"];
 
-export default function Prediction() {
+type ChartPoint = {
+    id: string;
+    x: string;
+    y: number;
+};
+
+type PredictionProps = {
+    weeklyData: ChartPoint[];
+    dailyData: ChartPoint[];
+};
+
+export default function Prediction({ weeklyData, dailyData }: PredictionProps) {
       const [open, setOpen] = useState(false);
       const [selected, setSelected] = useState("All");
       const menuRef = useRef<HTMLDivElement>(null);
@@ -53,9 +64,9 @@ export default function Prediction() {
                                 </div>
                 </div>
                 <div className="text-center text-gray-300 text-sm mb-2 mt-4">Weekly (cars in garage / total capacity)</div>
-                <DynamicChart type="weekly" garage={selected} />
+                <DynamicChart type="weekly" garage={selected} data={weeklyData} />
                 <div className="text-center text-gray-300 text-sm mb-2 mt-8">Daily (divergence from baseline average)</div>
-                <DynamicChart type="daily" garage={selected} />
+                <DynamicChart type="daily" garage={selected} data={dailyData} />
             </div>
         </div>
     )

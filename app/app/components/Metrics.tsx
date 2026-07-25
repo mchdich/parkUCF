@@ -1,31 +1,18 @@
-import { useEffect, useState } from "react";
+type MetricsData = {
+    time: string;
+    timeval: string;
+    garage: string;
+    garageval: string;
+    maxsum: string;
+    maxval: string;
+    poc: string;
+};
 
-export default function Metrics() {
-    const [metrics, setMetrics] = useState({
-        time: "",
-        timeval: "",
-        garage: "",
-        garageval: "",
-        maxsum: "",
-        maxval: "",
-        poc: ""
-    });
+type MetricsProps = {
+    metrics: MetricsData;
+};
 
-    useEffect(() => {
-        fetch('https://parkucf-hsbpefgpekhph5fv.centralus-01.azurewebsites.net/api/metrics')
-            .then(response => response.json())
-            .then(data => {
-                setMetrics({
-                    time: data[0].time,
-                    timeval: data[0].timeval,
-                    garage: data[0].garage,
-                    garageval: data[0].garageval,
-                    maxsum: data[0].maxsum,
-                    maxval: data[0].maxval,
-                    poc: data[0].poc
-                });
-            });
-    }, []);
+export default function Metrics({ metrics }: MetricsProps) {
 
     return (
         <div className="mt-16">
